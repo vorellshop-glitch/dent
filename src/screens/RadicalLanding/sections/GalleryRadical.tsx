@@ -9,8 +9,8 @@ const galleryCases = [
     description: "Correction of severe enamel staining, minor overlapping, and asymmetrical tooth lengths using hand-crafted, translucent ceramic veneers.",
     beforeLabel: "Discolored & Uneven",
     afterLabel: "Vibrant & Harmonious",
-    beforeBg: "from-[#1a1816] to-[#241e1a]", // Matte discolored simulation
-    afterBg: "from-[#241c0a] via-[#4d3b19] to-[#241c0a]", // Radiant gold-infused smile simulation
+    beforeImg: "https://images.unsplash.com/photo-1579684389782-64d84b5e9050?q=80&w=1200&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 2,
@@ -20,8 +20,8 @@ const galleryCases = [
     description: "Re-alignment of anterior teeth crowding and correction of spacing issues without compromising the patient's professional image.",
     beforeLabel: "Crowded & Misaligned",
     afterLabel: "Perfectly Realigned",
-    beforeBg: "from-[#16181a] to-[#1e2224]",
-    afterBg: "from-[#0c1a24] via-[#1b3b4f] to-[#0c1a24]",
+    beforeImg: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=1200&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 3,
@@ -31,8 +31,8 @@ const galleryCases = [
     description: "Conservative closure of a central midline gap and repairs to chipped lateral incisors using multi-shaded, tooth-matched composite bonding.",
     beforeLabel: "Midline Gap",
     afterLabel: "Seamless Closure",
-    beforeBg: "from-[#1a1618] to-[#241e20]",
-    afterBg: "from-[#280c18] via-[#591e3b] to-[#280c18]",
+    beforeImg: "https://images.unsplash.com/photo-1512223792601-592a9809eed4?q=80&w=1200&auto=format&fit=crop",
+    afterImg: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1200&auto=format&fit=crop",
   },
 ];
 
@@ -111,37 +111,53 @@ export const GalleryRadical = (): JSX.Element => {
               }}
               onMouseMove={(e) => handleMove(e.clientX)}
               onTouchMove={(e) => handleMove(e.touches[0].clientX)}
-              className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-stone-850 bg-stone-950 cursor-ew-resize select-none"
+              className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-stone-850 bg-stone-950 cursor-ew-resize select-none shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             >
               {/* After State (Full Base Layer) */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${activeCase.afterBg} flex flex-col justify-center items-center p-8 text-center`}>
-                <div className="h-24 w-24 rounded-full border border-amber-200/20 bg-amber-200/5 flex items-center justify-center shadow-[0_0_40px_rgba(251,191,36,0.1)]">
-                  <svg className="h-10 w-10 text-amber-200 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
+              <div className="absolute inset-0 w-full h-full">
+                <img
+                  src={activeCase.afterImg}
+                  alt={activeCase.afterLabel}
+                  className="w-full h-full object-cover sepia-[0.10] brightness-[0.95] contrast-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 flex flex-col justify-end p-8" />
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+                  <div className="h-16 w-16 rounded-full border border-amber-200/20 bg-[#0a0a09]/80 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.1)]">
+                    <svg className="h-7 w-7 text-amber-200 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                  </div>
+                  <span className="mt-4 text-xl font-light tracking-widest text-stone-100 uppercase font-serif">
+                    {activeCase.afterLabel}
+                  </span>
+                  <span className="mt-1 text-[9px] text-amber-200/60 uppercase tracking-[0.3em] font-light">Lumière Finish</span>
                 </div>
-                <span className="mt-6 text-2xl font-light tracking-widest text-stone-100 uppercase font-serif">
-                  {activeCase.afterLabel}
-                </span>
-                <span className="mt-2 text-[10px] text-amber-200/60 uppercase tracking-[0.3em] font-light">Lumière Finish</span>
               </div>
 
               {/* Before State (Cropped Overlapping Layer) */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${activeCase.beforeBg} flex flex-col justify-center items-center p-8 text-center overflow-hidden`}
+                className="absolute inset-0 overflow-hidden"
                 style={{ width: `${sliderPosition}%` }}
               >
-                {/* Fixed width inner container to prevent text scaling during slide */}
-                <div className="absolute inset-0 flex flex-col justify-center items-center p-8 text-center w-full min-w-[320px] md:min-w-[500px] lg:min-w-[700px]">
-                  <div className="h-24 w-24 rounded-full border border-stone-800 bg-stone-900/50 flex items-center justify-center">
-                    <svg className="h-10 w-10 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
+                {/* Fixed width inner container matching the outer aspect ratio */}
+                <div className="absolute inset-0 w-full aspect-[16/10] min-w-[320px] md:min-w-[500px] lg:min-w-[700px]">
+                  <img
+                    src={activeCase.beforeImg}
+                    alt={activeCase.beforeLabel}
+                    className="w-full h-full object-cover grayscale opacity-90 contrast-[0.9] brightness-[0.8]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
+                  <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+                    <div className="h-16 w-16 rounded-full border border-stone-850 bg-[#0a0a09]/80 backdrop-blur-md flex items-center justify-center">
+                      <svg className="h-7 w-7 text-stone-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                    <span className="mt-4 text-xl font-light tracking-widest text-stone-400 uppercase font-serif">
+                      {activeCase.beforeLabel}
+                    </span>
+                    <span className="mt-1 text-[9px] text-stone-500 uppercase tracking-[0.3em] font-light">Initial Assessment</span>
                   </div>
-                  <span className="mt-6 text-2xl font-light tracking-widest text-stone-500 uppercase font-serif">
-                    {activeCase.beforeLabel}
-                  </span>
-                  <span className="mt-2 text-[10px] text-stone-600 uppercase tracking-[0.3em] font-light">Initial Assessment</span>
                 </div>
               </div>
 

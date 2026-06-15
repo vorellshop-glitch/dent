@@ -16,6 +16,16 @@ export const HeroRadical = (): JSX.Element => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(245,158,11,0.04)_0%,_transparent_60%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(168,162,158,0.03)_0%,_transparent_60%)]" />
 
+      {/* Background Image Overlay with low opacity */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1600&auto=format&fit=crop"
+          alt="Lumière Sanctuary Background"
+          className="h-full w-full object-cover scale-[1.05] opacity-[0.08] grayscale blur-[2px]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a09]/50 via-transparent to-[#0a0a09]" />
+      </div>
+
       {/* Navigation */}
       <nav className="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-8 lg:px-12">
         <div className="flex items-center gap-3">

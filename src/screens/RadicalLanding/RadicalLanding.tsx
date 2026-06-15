@@ -1,6 +1,7 @@
 import { HeroRadical } from "./sections/HeroRadical";
 import { ServicesRadical } from "./sections/ServicesRadical";
 import { GalleryRadical } from "./sections/GalleryRadical";
+import { TestimonialRadical } from "./sections/TestimonialRadical";
 import { ExperienceRadical } from "./sections/ExperienceRadical";
 import { FAQRadical } from "./sections/FAQRadical";
 import { FooterRadical } from "./sections/FooterRadical";
@@ -11,6 +12,7 @@ export const RadicalLanding = (): JSX.Element => {
       <HeroRadical />
       <ServicesRadical />
       <GalleryRadical />
+      <TestimonialRadical />
       <ExperienceRadical />
       <FAQRadical />
       <FooterRadical />

@@ -10,6 +10,7 @@ const treatmentsList = [
     description: "Indistinguishable porcelain restoration tailored to your facial proportions.",
     features: ["Custom shade matching", "Minimal prep technique", "10-15 year lifetime expectation"],
     isPerTooth: true,
+    image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: "invisalign",
@@ -19,6 +20,7 @@ const treatmentsList = [
     description: "Premium orthodontic realignment without structural compromise.",
     features: ["3D digital scan planning", "Discreet custom trays", "Includes teeth whitening"],
     isPerTooth: false,
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: "makeover",
@@ -28,6 +30,7 @@ const treatmentsList = [
     description: "Complete custom aesthetic reconstruction combining veneers and contouring.",
     features: ["Full face-mapping design", "VIP concierge treatment", "Lifetime restoration support"],
     isPerTooth: false,
+    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: "whitening",
@@ -37,6 +40,7 @@ const treatmentsList = [
     description: "Rapid brightening up to 8 shades in a single comfortable visit.",
     features: ["Professional sensitivity control", "Varnished finish", "Immediate results in 90 mins"],
     isPerTooth: false,
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: "bonding",
@@ -46,6 +50,7 @@ const treatmentsList = [
     description: "Artistic direct composite sculpting to correct minor chips and spacing.",
     features: ["Single visit procedure", "Enamel shade layered", "Conservative prep"],
     isPerTooth: true,
+    image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=600&auto=format&fit=crop",
   },
 ];
 
@@ -228,55 +233,67 @@ export const ServicesRadical = (): JSX.Element => {
           </div>
 
           {/* Results Summary Card */}
-          <div className="lg:col-span-5 lg:sticky lg:top-8 rounded-3xl border border-amber-200/10 bg-gradient-to-b from-stone-900 to-stone-950 p-8 shadow-2xl">
-            <h3 className="text-xl font-light text-stone-100 font-serif">Selected Configuration</h3>
-            
-            {/* Treatment Summary */}
-            <div className="mt-6 border-b border-stone-850 pb-6">
-              <h4 className="text-base font-medium text-amber-200">{selectedTreatment.name}</h4>
-              <p className="mt-2 text-xs leading-relaxed font-light text-stone-400">
-                {selectedTreatment.description}
-              </p>
-              <ul className="mt-4 space-y-2 text-xs font-light text-stone-500">
-                {selectedTreatment.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2">
-                    <div className="h-1 w-1 rounded-full bg-amber-200" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
+          <div className="lg:col-span-5 lg:sticky lg:top-8 overflow-hidden rounded-3xl border border-amber-200/10 bg-gradient-to-b from-stone-900 to-[#0c0c0a] shadow-2xl">
+            {/* Treatment Banner Image */}
+            <div className="relative h-44 w-full overflow-hidden">
+              <img
+                src={selectedTreatment.image}
+                alt={selectedTreatment.name}
+                className="h-full w-full object-cover sepia-[0.10] brightness-[0.8] contrast-[1.05]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent" />
             </div>
 
-            {/* Price Calculations */}
-            <div className="mt-6 space-y-4">
-              <div className="flex justify-between items-center text-xs tracking-wider">
-                <span className="text-stone-500 uppercase font-light">ESTIMATED TOTAL</span>
-                <span className="text-stone-300 font-serif text-lg font-medium">
-                  ${calculatedTotals.total.toLocaleString("en-US", { minimumFractionDigits: 0 })}
-                </span>
-              </div>
+            <div className="p-8">
+              <h3 className="text-xl font-light text-stone-100 font-serif">Selected Configuration</h3>
               
-              <div className="rounded-2xl border border-amber-200/10 bg-amber-200/[0.01] p-4 text-center">
-                <span className="text-[10px] uppercase tracking-[0.2em] font-light text-stone-500">0% Financing Estimate</span>
-                <div className="mt-2 flex justify-center items-baseline gap-1.5">
-                  <span className="text-4xl font-light text-amber-200 font-serif">
-                    ${calculatedTotals.monthly.toLocaleString("en-US", { maximumFractionDigits: 0 })}
-                  </span>
-                  <span className="text-xs text-stone-500 uppercase tracking-widest font-light">/ month</span>
-                </div>
-                <p className="mt-2 text-[10px] text-stone-600 font-light tracking-wide">
-                  Interest-free monthly investment for {months} months
+              {/* Treatment Summary */}
+              <div className="mt-6 border-b border-stone-850 pb-6">
+                <h4 className="text-base font-medium text-amber-200">{selectedTreatment.name}</h4>
+                <p className="mt-2 text-xs leading-relaxed font-light text-stone-400">
+                  {selectedTreatment.description}
                 </p>
+                <ul className="mt-4 space-y-2 text-xs font-light text-stone-500">
+                  {selectedTreatment.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2">
+                      <div className="h-1 w-1 rounded-full bg-amber-200" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
 
-            <Button className="relative overflow-hidden mt-8 w-full rounded-2xl bg-gradient-to-r from-amber-300 to-amber-200 py-6 text-stone-950 font-semibold uppercase tracking-widest text-xs transition-all hover:opacity-90 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent before:animate-shimmer">
-              Submit Configuration & Secure Spot
-            </Button>
-            
-            <p className="mt-4 text-center text-[9px] text-stone-600 uppercase tracking-widest font-light">
-              This estimate is subject to clinical assessment. No application fees.
-            </p>
+              {/* Price Calculations */}
+              <div className="mt-6 space-y-4">
+                <div className="flex justify-between items-center text-xs tracking-wider">
+                  <span className="text-stone-500 uppercase font-light">ESTIMATED TOTAL</span>
+                  <span className="text-stone-300 font-serif text-lg font-medium">
+                    ${calculatedTotals.total.toLocaleString("en-US", { minimumFractionDigits: 0 })}
+                  </span>
+                </div>
+                
+                <div className="rounded-2xl border border-amber-200/10 bg-amber-200/[0.01] p-4 text-center">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-light text-stone-500">0% Financing Estimate</span>
+                  <div className="mt-2 flex justify-center items-baseline gap-1.5">
+                    <span className="text-4xl font-light text-amber-200 font-serif">
+                      ${calculatedTotals.monthly.toLocaleString("en-US", { maximumFractionDigits: 0 })}
+                    </span>
+                    <span className="text-xs text-stone-500 uppercase tracking-widest font-light">/ month</span>
+                  </div>
+                  <p className="mt-2 text-[10px] text-stone-600 font-light tracking-wide">
+                    Interest-free monthly investment for {months} months
+                  </p>
+                </div>
+              </div>
+
+              <Button className="relative overflow-hidden mt-8 w-full rounded-2xl bg-gradient-to-r from-amber-300 to-amber-200 py-6 text-stone-950 font-semibold uppercase tracking-widest text-xs transition-all hover:opacity-90 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent before:animate-shimmer">
+                Submit Configuration & Secure Spot
+              </Button>
+              
+              <p className="mt-4 text-center text-[9px] text-stone-600 uppercase tracking-widest font-light">
+                This estimate is subject to clinical assessment. No application fees.
+              </p>
+            </div>
           </div>
 
         </div>
