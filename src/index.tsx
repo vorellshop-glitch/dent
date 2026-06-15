@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Landing } from "./screens/Landing";
 import { Desktop } from "./screens/Desktop";
 import { RadicalLanding } from "./screens/RadicalLanding";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = (): JSX.Element => {
   // Allow switching views via query parameters (e.g., ?page=desktop, ?page=landing, ?page=radical)
@@ -23,5 +24,6 @@ const App = (): JSX.Element => {
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <App />
+    <Analytics />
   </StrictMode>,
 );
