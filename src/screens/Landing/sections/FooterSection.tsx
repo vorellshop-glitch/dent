@@ -155,17 +155,23 @@ export const FooterSection = (): JSX.Element => {
 
       {/* Booking Modal */}
       {showBooking && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 backdrop-blur-sm">
-          <div className="relative mx-4 w-full max-w-lg rounded-3xl border border-stone-800 bg-stone-900 p-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 backdrop-blur-sm animate-fade-in">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="footer-modal-title"
+            className="relative mx-4 w-full max-w-lg rounded-3xl border border-stone-800 bg-stone-900 p-8 shadow-2xl animate-zoom-in"
+          >
             <button
               onClick={() => setShowBooking(false)}
+              aria-label="Close booking modal"
               className="absolute right-6 top-6 text-stone-500 transition-colors hover:text-stone-300"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <h3 className="text-2xl font-light text-stone-100">Reserve Your Consultation</h3>
+            <h3 id="footer-modal-title" className="text-2xl font-light text-stone-100">Reserve Your Consultation</h3>
             <p className="mt-2 text-stone-400">Begin your smile transformation journey</p>
             <form className="mt-8 space-y-4">
               <input

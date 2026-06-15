@@ -103,15 +103,19 @@ export const GallerySection = (): JSX.Element => {
         {/* Expanded View Modal */}
         {activeItem && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/90 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/90 p-4 backdrop-blur-sm animate-fade-in"
             onClick={() => setActiveItem(null)}
           >
             <div
-              className="relative w-full max-w-4xl rounded-3xl border border-stone-800 bg-stone-900 p-6 lg:p-10"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="gallery-modal-title"
+              className="relative w-full max-w-4xl rounded-3xl border border-stone-800 bg-stone-900 p-6 lg:p-10 animate-zoom-in"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setActiveItem(null)}
+                aria-label="Close details modal"
                 className="absolute right-6 top-6 text-stone-500 transition-colors hover:text-stone-300"
               >
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -137,7 +141,7 @@ export const GallerySection = (): JSX.Element => {
                       </div>
                     </div>
                     <div className="mt-6">
-                      <h3 className="text-2xl font-medium text-stone-100">{item.title}</h3>
+                      <h3 id="gallery-modal-title" className="text-2xl font-medium text-stone-100">{item.title}</h3>
                       <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-stone-400">
                         <span className="rounded-full bg-stone-800 px-3 py-1">{item.treatment}</span>
                         <span>{item.duration}</span>

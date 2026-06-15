@@ -3,6 +3,7 @@ import { Button } from "../../../components/ui/button";
 
 export const HeroSection = (): JSX.Element => {
   const [showBooking, setShowBooking] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const scrollToGallery = () => {
     document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
@@ -39,7 +40,10 @@ export const HeroSection = (): JSX.Element => {
             Book Consultation
           </Button>
         </div>
-        <button className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-700 lg:hidden">
+        <button
+          onClick={() => setShowMobileMenu(true)}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-700 lg:hidden"
+        >
           <svg className="h-5 w-5 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -114,17 +118,23 @@ export const HeroSection = (): JSX.Element => {
 
       {/* Booking Modal */}
       {showBooking && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 backdrop-blur-sm">
-          <div className="relative mx-4 w-full max-w-lg rounded-3xl border border-stone-800 bg-stone-900 p-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 backdrop-blur-sm animate-fade-in">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="hero-modal-title"
+            className="relative mx-4 w-full max-w-lg rounded-3xl border border-stone-800 bg-stone-900 p-8 shadow-2xl animate-zoom-in"
+          >
             <button
               onClick={() => setShowBooking(false)}
+              aria-label="Close booking modal"
               className="absolute right-6 top-6 text-stone-500 transition-colors hover:text-stone-300"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <h3 className="text-2xl font-light text-stone-100">Reserve Your Consultation</h3>
+            <h3 id="hero-modal-title" className="text-2xl font-light text-stone-100">Reserve Your Consultation</h3>
             <p className="mt-2 text-stone-400">Begin your smile transformation journey</p>
             <form className="mt-8 space-y-4">
               <input
@@ -158,6 +168,60 @@ export const HeroSection = (): JSX.Element => {
             <p className="mt-4 text-center text-sm text-stone-500">
               No payment required. We'll confirm within 24 hours.
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Menu Overlay */}
+      {showMobileMenu && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-stone-950 px-6 py-6 animate-fade-in lg:hidden">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-amber-200 to-amber-400" />
+              <span className="text-2xl font-light tracking-wide text-stone-100">
+                Lumière<span className="font-medium text-amber-200">Dental</span>
+              </span>
+            </div>
+            <button
+              onClick={() => setShowMobileMenu(false)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-700"
+            >
+              <svg className="h-5 w-5 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div className="mt-16 flex flex-col gap-8 text-center text-xl font-light">
+            <a
+              href="#services"
+              onClick={() => setShowMobileMenu(false)}
+              className="text-stone-300 transition-colors hover:text-amber-200"
+            >
+              Services
+            </a>
+            <a
+              href="#gallery"
+              onClick={() => setShowMobileMenu(false)}
+              className="text-stone-300 transition-colors hover:text-amber-200"
+            >
+              Gallery
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setShowMobileMenu(false)}
+              className="text-stone-300 transition-colors hover:text-amber-200"
+            >
+              FAQ
+            </a>
+            <Button
+              onClick={() => {
+                setShowMobileMenu(false);
+                setShowBooking(true);
+              }}
+              className="mx-auto rounded-full bg-amber-200 px-8 py-3 text-stone-900 transition-all hover:bg-amber-100"
+            >
+              Book Consultation
+            </Button>
           </div>
         </div>
       )}

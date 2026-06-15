@@ -77,16 +77,16 @@ Use this checklist to track the progress of development, testing, and optimizati
 
 ### Phase 3: Integration & Routing
 - [x] Update root rendering in `src/index.tsx` to mount `<Landing />`
-- [ ] Implement query/route parameter switching if the user needs to swap between the legacy `Desktop` view and the new `Landing` page
-- [ ] Ensure state preservation or graceful fallback for legacy desktop routes
+- [x] Implement query/route parameter switching if the user needs to swap between the legacy `Desktop` view and the new `Landing` page
+- [x] Ensure state preservation or graceful fallback for legacy desktop routes
 
 ### Phase 4: Polish, UI Polish & Micro-interactions
-- [ ] Add smooth scrolling triggers between sections (e.g., Hero -> Gallery)
-- [ ] Implement responsive layout adjustments for all mobile and tablet viewports
-- [ ] Add hover animations on pricing cards and CTA buttons
-- [ ] Add modal transitions (open/close animations for booking and gallery details)
+- [x] Add smooth scrolling triggers between sections (e.g., Hero -> Gallery)
+- [x] Implement responsive layout adjustments for all mobile and tablet viewports
+- [x] Add hover animations on pricing cards and CTA buttons
+- [x] Add modal transitions (open/close animations for booking and gallery details)
 
 ### Phase 5: Verification & Production Build
-- [ ] Check console for React warning/errors
-- [ ] Verify accessibility attributes (ARIA roles) on Accordions and Modals
-- [ ] Execute production build (`npm run build`) and fix any TS or linter issues
+- [x] Check console for React warning/errors
+- [x] Verify accessibility attributes (ARIA roles) on Accordions and Modals
+- [x] Execute production build (`npm run build`) and fix any TS or linter issues

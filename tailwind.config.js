@@ -48,13 +48,17 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "Outfit",
+          "Poppins",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
+        ],
+        serif: [
+          "Cinzel",
+          "Georgia",
+          "ui-serif",
+          "serif",
         ],
       },
       keyframes: {
@@ -66,10 +70,25 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "zoom-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "shimmer": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.2s ease-out",
+        "zoom-in": "zoom-in 0.2s ease-out",
+        "shimmer": "shimmer 2.5s infinite",
       },
     },
     container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
